@@ -126,4 +126,748 @@
       border-radius: var(--radius);
       font-size: 0.85rem;
       font-weight: 600;
-      cursor: pointer
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      padding: 20px 24px;
+      max-width: 1500px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hierarchy-pane {
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .section-head {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .folder-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      max-height: calc(100vh - 240px);
+      padding-right: 4px;
+    }
+
+    .folder-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px dashed rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .folder-item:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .folder-item.drag-over {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      border-style: solid;
+      transform: scale(1.02);
+    }
+
+    .folder-icon {
+      font-size: 1.6rem;
+    }
+
+    .folder-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .folder-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .folder-rule {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .desk-pane {
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .desk-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--panel-border);
+      padding-bottom: 14px;
+    }
+
+    .search-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 6px 14px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.85rem;
+      width: 220px;
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .metrics-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .metric-badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--panel-border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .metric-badge strong {
+      color: var(--accent);
+    }
+
+    .desk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+      min-height: 400px;
+      align-content: start;
+      padding: 12px;
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.18);
+      overflow-y: auto;
+      max-height: calc(100vh - 280px);
+    }
+
+    .file-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: grab;
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      touch-action: none;
+    }
+
+    .file-card:active {
+      cursor: grabbing;
+    }
+
+    .file-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      border-color: var(--accent);
+    }
+
+    .file-card.dragging {
+      opacity: 0.35;
+      transform: scale(0.96);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .file-emoji {
+      font-size: 1.8rem;
+    }
+
+    .file-ext {
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .file-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+
+    .file-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.2;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 200;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #1e293b;
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 28px;
+      max-width: 540px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-card h2 {
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .form-group input, .form-group textarea {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body class="theme-young">
+
+  <header>
+    <div class="brand">
+      <span>🗂️</span>
+      <span>OrganizeOS</span>
+    </div>
+
+    <div class="tier-group">
+      <button class="tier-pill active" onclick="setTier('young')">1. Young Explorers (K-5)</button>
+      <button class="tier-pill" onclick="setTier('middle')">2. Digital Ranger (6-8)</button>
+      <button class="tier-pill" onclick="setTier('advanced')">3. IT Architect (9+)</button>
+    </div>
+
+    <div class="actions-bar">
+      <button class="btn" onclick="openCurriculumModal()">📚 Curriculum</button>
+      <button class="btn" onclick="openCustomEditor()">🛠️ Level Editor</button>
+      <button class="btn btn-primary" onclick="resetActiveTier()">🔄 Reset</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="hierarchy-pane">
+      <div class="section-head">
+        <span>Directory Tree</span>
+        <span id="folderCountLabel">0 Folders</span>
+      </div>
+      <div class="folder-tree" id="folderTree"></div>
+    </aside>
+
+    <section class="desk-pane">
+      <div class="desk-toolbar">
+        <div class="metrics-group">
+          <input type="text" id="searchInput" class="search-box" placeholder="Filter desk files..." oninput="filterFiles()">
+          <div class="metric-badge">Tidiness: <strong id="tidinessScore">100%</strong></div>
+          <div class="metric-badge">Remaining: <strong id="remainingCount">0</strong></div>
+        </div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);" id="tierDescription">
+          Drag and drop each desktop item into its correct target folder.
+        </div>
+      </div>
+      <div class="desk-grid" id="deskGrid"></div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="victoryModal">
+    <div class="modal-card" style="text-align: center;">
+      <div style="font-size: 3.5rem; margin-bottom: 8px;">🏆</div>
+      <h2>Desktop Tidy & Certified!</h2>
+      <p id="victoryText">You successfully routed all files to their optimal folders with zero data clutter.</p>
+      <div class="modal-actions" style="justify-content: center;">
+        <button class="btn btn-primary" onclick="proceedNextTier()">Advance to Next Tier</button>
+        <button class="btn" onclick="closeModals()">Stay Here</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="curriculumModal">
+    <div class="modal-card">
+      <h2>📚 Learning Objectives & Curriculum</h2>
+      <p>OrganizeOS introduces computer literacy, taxonomies, and folder hierarchies across three structured learning stages:</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+        <div style="background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; border-left: 3px solid #f472b6;">
+          <strong style="color: #f472b6;">Tier 1: Young Explorers (K-5)</strong>
+          <p style="margin: 4px 0 0; font-size: 0.85rem;">Focuses on object recognition and intuitive grouping (pictures vs. homework vs. songs) with large cards and forgiving feedback.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; border-left: 3px solid #38bdf8;">
+          <strong style="color: #38bdf8;">Tier 2: Digital Ranger (Grades 6-8)</strong>
+          <p style="margin: 4px 0 0; font-size: 0.85rem;">Introduces file extensions (.docx, .pdf, .mp4), project versioning (Drafts vs. Final Submissions), and research categorization.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; border-left: 3px solid #10b981;">
+          <strong style="color: #10b981;">Tier 3: IT Architect (High School & Advanced)</strong>
+          <p style="margin: 4px 0 0; font-size: 0.85rem;">Simulates real-world developer directories (`/src`, `/etc`, `/assets`, `/logs`), POSIX-style paths, and strict technical extensions.</p>
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="closeModals()">Close Guide</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="editorModal">
+    <div class="modal-card">
+      <h2>🛠️ Teacher & Custom Level Editor</h2>
+      <p>Quickly append a custom file to the desktop to test your students on specific subject units.</p>
+      
+      <div class="form-group">
+        <label>File Name</label>
+        <input type="text" id="customFileName" placeholder="e.g. Solar_System_Notes">
+      </div>
+      <div class="form-group">
+        <label>File Extension</label>
+        <input type="text" id="customFileExt" placeholder="e.g. docx, pdf, py">
+      </div>
+      <div class="form-group">
+        <label>Description / Hint</label>
+        <input type="text" id="customFileHint" placeholder="e.g. Science fair planetary data">
+      </div>
+      <div class="form-group">
+        <label>Target Category / Folder Match</label>
+        <select id="customFileTarget" style="background: rgba(0,0,0,0.3); border: 1px solid var(--panel-border); border-radius: 8px; padding: 8px 12px; color: #fff;"></select>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn" onclick="closeModals()">Cancel</button>
+        <button class="btn btn-primary" onclick="createCustomFile()">Spawn File to Desk</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      },
+      play(freq, type = 'sine', duration = 0.12) {
+        try {
+          this.init();
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch(e) {}
+      },
+      success() {
+        this.play(523.25, 'triangle', 0.1);
+        setTimeout(() => this.play(659.25, 'triangle', 0.12), 90);
+        setTimeout(() => this.play(783.99, 'triangle', 0.22), 180);
+      },
+      error() {
+        this.play(200, 'sawtooth', 0.22);
+      },
+      pickup() {
+        this.play(340, 'sine', 0.06);
+      }
+    };
+
+    const LEVEL_DATA = {
+      young: {
+        themeClass: 'theme-young',
+        desc: 'Drag the colorful cards into the matching collection folders!',
+        folders: [
+          { id: 'f_anim', name: 'Animal Photos', icon: '🐶', rule: 'Pictures of pets & animals', target: 'animal' },
+          { id: 'f_school', name: 'School Homework', icon: '📚', rule: 'Math, spelling & reading sheets', target: 'school' },
+          { id: 'f_audio', name: 'Songs & Sounds', icon: '🎵', rule: 'Music, tunes & audio recordings', target: 'music' },
+          { id: 'f_art', name: 'Drawings & Games', icon: '🎨', rule: 'Coloring pages and mini games', target: 'art' }
+        ],
+        files: [
+          { id: 'y1', name: 'Puppy_In_Grass', ext: 'jpg', type: 'animal', icon: '🐕', hint: 'Golden retriever photo' },
+          { id: 'y2', name: 'Math_Worksheet_3', ext: 'doc', type: 'school', icon: '✏️', hint: 'Simple addition page' },
+          { id: 'y3', name: 'Nursery_Rhyme', ext: 'mp3', type: 'music', icon: '🎶', hint: 'Sing-along bedtime audio' },
+          { id: 'y4', name: 'Crayon_Castle', ext: 'png', type: 'art', icon: '🏰', hint: 'Digital crayon drawing' },
+          { id: 'y5', name: 'Spelling_Words', ext: 'doc', type: 'school', icon: '📝', hint: 'Week 2 vocabulary list' },
+          { id: 'y6', name: 'Baby_Otter', ext: 'jpg', type: 'animal', icon: '🦦', hint: 'River otter wildlife picture' },
+          { id: 'y7', name: 'Piano_Scale_Practice', ext: 'wav', type: 'music', icon: '🎹', hint: 'Instrument practice audio' },
+          { id: 'y8', name: 'Space_Ship_Doodle', ext: 'png', type: 'art', icon: '🚀', hint: 'Fun doodle made in paint' }
+        ]
+      },
+      middle: {
+        themeClass: '',
+        desc: 'Organize middle school project files, spreadsheets, and drafts by subject.',
+        folders: [
+          { id: 'f_sci', name: 'Science Fair Project', icon: '🔬', rule: 'Hypotheses, charts & lab metrics', target: 'science' },
+          { id: 'f_eng', name: 'English Literature', icon: '📖', rule: 'Book reviews & essay drafts', target: 'english' },
+          { id: 'f_robot', name: 'Robotics Team', icon: '🤖', rule: 'Python scripts & CAD blueprints', target: 'robotics' },
+          { id: 'f_media', name: 'Video Journalism', icon: '🎬', rule: 'Interviews & audio b-roll', target: 'media' }
+        ],
+        files: [
+          { id: 'm1', name: 'Plant_Growth_Metrics', ext: 'csv', type: 'science', icon: '📊', hint: 'Weekly tabular specimen logs' },
+          { id: 'm2', name: 'To_Kill_A_Mockingbird_Draft', ext: 'docx', type: 'english', icon: '📄', hint: 'Essay chapter 3 breakdown' },
+          { id: 'm3', name: 'Autonomous_Sensor_Loop', ext: 'py', type: 'robotics', icon: '🐍', hint: 'Ultrasonic sensor controller' },
+          { id: 'm4', name: 'Principal_Interview_Cut', ext: 'mp4', type: 'media', icon: '🎥', hint: 'Edited 1080p journalism video' },
+          { id: 'm5', name: 'Water_Salinity_Hypothesis', ext: 'pdf', type: 'science', icon: '📑', hint: 'Formatted fair presentation' },
+          { id: 'm6', name: 'Works_Cited_MLA', ext: 'docx', type: 'english', icon: '📚', hint: 'Academic bibliography' },
+          { id: 'm7', name: 'Chassis_Blueprint_V2', ext: 'dxf', type: 'robotics', icon: '📐', hint: '3D printed arm dimensions' }
+        ]
+      },
+      advanced: {
+        themeClass: 'theme-advanced',
+        desc: 'System Administrator mode: Route source code, configurations, logs, and assets.',
+        folders: [
+          { id: 'f_src', name: '/src/components', icon: '⚛️', rule: 'React/TSX UI primitives & hooks', target: 'src' },
+          { id: 'f_conf', name: '/etc/nginx/conf.d', icon: '⚙️', rule: 'Server reverse proxy & yaml configs', target: 'config' },
+          { id: 'f_assets', name: '/public/assets/svg', icon: '🖼️', rule: 'Optimized vectors & stylesheets', target: 'assets' },
+          { id: 'f_logs', name: '/var/log/audit', icon: '📋', rule: 'System access traces & error dumps', target: 'logs' }
+        ],
+        files: [
+          { id: 'a1', name: 'NavBar.container', ext: 'tsx', type: 'src', icon: '💻', hint: 'Navigation state provider' },
+          { id: 'a2', name: 'reverse_proxy.prod', ext: 'conf', type: 'config', icon: '🌐', hint: 'Nginx upstream cluster socket' },
+          { id: 'a3', name: 'brand_glyph_monochrome', ext: 'svg', type: 'assets', icon: '🎨', hint: 'Scalable company logo asset' },
+          { id: 'a4', name: 'docker-compose.staging', ext: 'yaml', type: 'config', icon: '🐳', hint: 'Redis and Postgres service specs' },
+          { id: 'a5', name: 'auth_failure_2026-11-01', ext: 'log', type: 'logs', icon: '🔒', hint: 'SSH brute force audit capture' },
+          { id: 'a6', name: 'useWorkspaceStore', ext: 'ts', type: 'src', icon: '⚛️', hint: 'Global Zustand state hook' },
+          { id: 'a7', name: 'query_slow_dump', ext: 'log', type: 'logs', icon: '⏱️', hint: 'PostgreSQL query timing traces' }
+        ]
+      }
+    };
+
+    let currentTierKey = 'young';
+    let currentFolders = [];
+    let currentFiles = [];
+
+    function setTier(tierKey) {
+      currentTierKey = tierKey;
+      const data = LEVEL_DATA[tierKey];
+
+      document.body.className = data.themeClass;
+      
+      document.querySelectorAll('.tier-pill').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tier-pill')).find(b => b.getAttribute('onclick').includes(tierKey));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.getElementById('tierDescription').innerText = data.desc;
+
+      currentFolders = JSON.parse(JSON.stringify(data.folders));
+      currentFiles = JSON.parse(JSON.stringify(data.files));
+
+      renderHierarchy();
+      renderDesk();
+      updateMetrics();
+      updateCustomEditorDropdown();
+    }
+
+    function resetActiveTier() {
+      setTier(currentTierKey);
+    }
+
+    function renderHierarchy() {
+      const container = document.getElementById('folderTree');
+      container.innerHTML = '';
+      document.getElementById('folderCountLabel').innerText = `${currentFolders.length} Folders`;
+
+      currentFolders.forEach(folder => {
+        const item = document.createElement('div');
+        item.className = 'folder-item';
+        item.dataset.targetType = folder.target;
+        item.innerHTML = `
+          <div class="folder-icon">${folder.icon}</div>
+          <div class="folder-details">
+            <div class="folder-name">${folder.name}</div>
+            <div class="folder-rule">${folder.rule}</div>
+          </div>
+        `;
+
+        item.addEventListener('dragover', e => {
+          e.preventDefault();
+          item.classList.add('drag-over');
+        });
+
+        item.addEventListener('dragleave', () => {
+          item.classList.remove('drag-over');
+        });
+
+        item.addEventListener('drop', e => {
+          e.preventDefault();
+          item.classList.remove('drag-over');
+          const fileId = e.dataTransfer.getData('text/plain');
+          handleDropOnFile(fileId, folder.target, item);
+        });
+
+        container.appendChild(item);
+      });
+    }
+
+    function renderDesk() {
+      const grid = document.getElementById('deskGrid');
+      grid.innerHTML = '';
+      const filterText = document.getElementById('searchInput').value.toLowerCase();
+
+      const visibleFiles = currentFiles.filter(f => 
+        f.name.toLowerCase().includes(filterText) || 
+        f.ext.toLowerCase().includes(filterText) ||
+        f.hint.toLowerCase().includes(filterText)
+      );
+
+      visibleFiles.forEach(file => {
+        const card = document.createElement('div');
+        card.className = 'file-card';
+        card.draggable = true;
+        card.id = file.id;
+
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="file-emoji">${file.icon}</span>
+            <span class="file-ext">.${file.ext}</span>
+          </div>
+          <div class="file-name">${file.name}</div>
+          <div class="file-hint">${file.hint}</div>
+        `;
+
+        card.addEventListener('dragstart', e => {
+          AudioEngine.pickup();
+          card.classList.add('dragging');
+          e.dataTransfer.setData('text/plain', file.id);
+        });
+
+        card.addEventListener('dragend', () => {
+          card.classList.remove('dragging');
+        });
+
+        grid.appendChild(card);
+      });
+
+      document.getElementById('remainingCount').innerText = currentFiles.length;
+    }
+
+    function handleDropOnFile(fileId, targetType, folderElem) {
+      const fileIndex = currentFiles.findIndex(f => f.id === fileId);
+      if (fileIndex === -1) return;
+
+      const file = currentFiles[fileIndex];
+
+      if (file.type === targetType) {
+        AudioEngine.success();
+        currentFiles.splice(fileIndex, 1);
+        renderDesk();
+        updateMetrics();
+
+        if (currentFiles.length === 0) {
+          triggerVictory();
+        }
+      } else {
+        AudioEngine.error();
+        folderElem.style.animation = 'shake 0.35s ease';
+        setTimeout(() => folderElem.style.animation = '', 350);
+      }
+    }
+
+    function filterFiles() {
+      renderDesk();
+    }
+
+    function updateMetrics() {
+      const initialTotal = LEVEL_DATA[currentTierKey].files.length;
+      const remaining = currentFiles.length;
+      const sorted = Math.max(0, initialTotal - remaining);
+      const scorePct = initialTotal > 0 ? Math.round((sorted / initialTotal) * 100) : 100;
+      document.getElementById('tidinessScore').innerText = `${scorePct}%`;
+      document.getElementById('remainingCount').innerText = remaining;
+    }
+
+    function triggerVictory() {
+      const modal = document.getElementById('victoryModal');
+      modal.classList.add('active');
+    }
+
+    function proceedNextTier() {
+      closeModals();
+      if (currentTierKey === 'young') setTier('middle');
+      else if (currentTierKey === 'middle') setTier('advanced');
+      else setTier('young');
+    }
+
+    function closeModals() {
+      document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('active'));
+    }
+
+    function openCurriculumModal() {
+      document.getElementById('curriculumModal').classList.add('active');
+    }
+
+    function openCustomEditor() {
+      document.getElementById('editorModal').classList.add('active');
+    }
+
+    function updateCustomEditorDropdown() {
+      const sel = document.getElementById('customFileTarget');
+      sel.innerHTML = '';
+      currentFolders.forEach(f => {
+        const opt = document.createElement('option');
+        opt.value = f.target;
+        opt.innerText = `${f.icon} ${f.name}`;
+        sel.appendChild(opt);
+      });
+    }
+
+    function createCustomFile() {
+      const name = document.getElementById('customFileName').value.trim() || 'My_Test_File';
+      const ext = document.getElementById('customFileExt').value.trim() || 'txt';
+      const hint = document.getElementById('customFileHint').value.trim() || 'Custom test assignment';
+      const target = document.getElementById('customFileTarget').value;
+
+      currentFiles.push({
+        id: 'custom_' + Date.now(),
+        name: name,
+        ext: ext,
+        type: target,
+        icon: '📁',
+        hint: hint
+      });
+
+      closeModals();
+      renderDesk();
+      updateMetrics();
+      AudioEngine.success();
+    }
+
+    setTier('young');
+  </script>
+</body>
+</html>
